@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Initialize Resend with the API key from environment variables
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
+  // Initialize Resend inside the function so it doesn't break the build if the env var is missing on Vercel
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const { name, email, message } = await request.json();
 
