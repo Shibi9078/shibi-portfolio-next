@@ -23,7 +23,7 @@ export function Navbar() {
         <Link href="/">SHIBI<span className="text-text-secondary">.DEV</span></Link>
       </div>
       
-      <div className="hidden md:flex items-center gap-10 text-[11px] tracking-[0.2em] font-medium text-text-secondary">
+      <div className="hidden md:flex items-center gap-10 text-sm tracking-[0.2em] font-medium text-text-secondary">
         {navLinks.map((link) => (
           <Link 
             key={link.name} 
