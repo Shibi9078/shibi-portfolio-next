@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function Philosophy() {
   return (
-    <section className="w-full min-h-[70vh] flex items-center justify-center px-8 py-32 bg-black text-white overflow-hidden">
+    <section className="w-full min-h-screen flex items-center justify-center px-8 bg-black text-white overflow-hidden">
       <motion.h3 
         initial={{ opacity: 0, filter: "blur(20px)", scale: 0.95 }}
         whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }}

@@ -170,28 +170,36 @@ export function Preloader() {
   useEffect(() => {
     if (phase === "loading") {
       let current = 0;
-      const interval = setInterval(() => {
-        current += Math.floor(Math.random() * 4) + 1;
-        if (current >= 100) {
-          current = 100;
-          setProgress(100);
-          clearInterval(interval);
-          
-          // Trigger Flash Completion Effect
-          setTimeout(() => {
-            setFlash(true);
-            // Trigger Fade Out & Unmount
-            setTimeout(() => {
-              stopAnimationRef.current = true;
-              setIsUnmounted(true);
-            }, 600); // 0.6s to allow flash & opacity transition to finish
-          }, 300);
-        } else {
-          setProgress(current);
-        }
-      }, 40);
+      let interval: NodeJS.Timeout;
       
-      return () => clearInterval(interval);
+      // Delay the counting by 400ms so it fades in fully at 0% before starting
+      const startTimer = setTimeout(() => {
+        interval = setInterval(() => {
+          current += Math.floor(Math.random() * 3) + 1; // 1 to 3
+          if (current >= 100) {
+            current = 100;
+            setProgress(100);
+            clearInterval(interval);
+            
+            // Trigger Flash Completion Effect
+            setTimeout(() => {
+              setFlash(true);
+              // Trigger Fade Out & Unmount
+              setTimeout(() => {
+                stopAnimationRef.current = true;
+                setIsUnmounted(true);
+              }, 600); // 0.6s to allow flash & opacity transition to finish
+            }, 300);
+          } else {
+            setProgress(current);
+          }
+        }, 30);
+      }, 400);
+      
+      return () => {
+        clearTimeout(startTimer);
+        if (interval) clearInterval(interval);
+      };
     }
   }, [phase]);
 

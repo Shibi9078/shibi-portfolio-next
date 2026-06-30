@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const phases = [
   {
@@ -9,42 +10,49 @@ const phases = [
     title: "Discovery & Scoping",
     tag: "DEFINING THE PARAMETERS",
     desc: "Before writing a single line of logic, I map the exact problem space. This is where ambiguous requirements are converted into strict, actionable technical specifications.",
+    imageUrl: "/process/process_phase_1.jpg",
   },
   {
     phase: "Phase 02",
     title: "Interface Prototyping",
     tag: "LOGIC MEETS DESIGN",
     desc: "Architecting the user journey. I construct precise wireframes to ensure intuitive navigation and seamless data flow across the entire application interface.",
+    imageUrl: "/process/process_phase_2.jpg",
   },
   {
     phase: "Phase 03",
     title: "Systems Architecture",
     tag: "SECURE FOUNDATIONS",
     desc: "Designing the core infrastructure. I establish robust database schemas, secure API contracts, and scalable environments capable of supporting heavy data processing and machine learning integrations.",
+    imageUrl: "/process/process_phase_3.jpg",
   },
   {
     phase: "Phase 04",
     title: "Core Engineering",
     tag: "PRECISION EXECUTION",
     desc: "Translating architecture into reality. Writing clean, modular, and optimized code with a strict adherence to modern software engineering principles and efficient algorithmic logic.",
+    imageUrl: "/process/process_phase_4.jpg",
   },
   {
     phase: "Phase 05",
     title: "Validation & Audits",
     tag: "STRESS TESTED",
     desc: "Rigorous Black-Box and Basis Path testing methodologies applied. Every function and endpoint is profiled for performance bottlenecks and security vulnerabilities.",
+    imageUrl: "/process/process_phase_5.jpg",
   },
   {
     phase: "Phase 06",
     title: "Production Pipeline",
     tag: "AUTOMATED DEPLOYMENT",
     desc: "Pushing to production with zero downtime. Utilizing continuous integration and deployment pipelines to ensure the live environment remains stable, secure, and actively monitored.",
+    imageUrl: "/process/process_phase_6.jpg",
   },
   {
     phase: "Phase 07",
     title: "System Handoff",
     tag: "SYSTEM OPERATIONAL",
     desc: "The final architecture is shipped. Delivering comprehensive documentation, clean handoff protocols, and a robust product ready for real-world scaling.",
+    imageUrl: "/process/process_phase_7.jpg",
   },
 ];
 
@@ -98,6 +106,7 @@ export function ProcessTimeline() {
             {/* SVG Track */}
             <div className="absolute inset-0 left-1/2 -translate-x-1/2 w-[400px]">
                 <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                    <circle cx="50" cy="0" r="1.5" fill="#ffffff" className="drop-shadow-[0_0_15px_rgba(255,255,255,1)]" />
                     <path 
                       d={svgPath}
                       fill="none" 
@@ -140,7 +149,18 @@ export function ProcessTimeline() {
                       }}
                     >
                         <div className={`bg-card-dark border border-border p-10 lg:p-14 rounded-3xl hover:border-white/30 hover:-translate-y-2 transition-all duration-500 shadow-xl relative overflow-hidden w-full max-w-[500px]`}>
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            
+                            <div className="absolute inset-0 z-0">
+                                <Image
+                                  src={phase.imageUrl}
+                                  alt={phase.title}
+                                  fill
+                                  className="object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                            </div>
+
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
                             <div className="relative z-10">
                                 <span className="font-mono text-green-400 text-[10px] md:text-xs uppercase tracking-widest">{phase.phase}</span>
                                 <h3 className="font-display text-3xl md:text-4xl text-white uppercase mt-4 mb-6 tracking-tight">{phase.title}</h3>
